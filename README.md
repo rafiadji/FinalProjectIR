@@ -7,8 +7,8 @@
 
 ### Langkah Langkah :
 * Pertama tentukan website salah satu berita yang akan di scrapping
-* Kemudian buat tool untuk scrapping
+* Kemudian buat tool untuk scrapping (Python)
 * Hasil scrapping di masukkan ke dalam database MySQL
-* Buat tool untuk perhitungan TF.IDF di PHP
+* Buat tool untuk perhitungan TF.IDF (PHP)
 * Compare dengan data yang ada di database
 * Selesai :)
