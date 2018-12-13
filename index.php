@@ -34,4 +34,17 @@
 
 		return $count / countword($d);
 	}
+
+	function df($words,$d){
+		$jumlah = 0;
+		$word = stopword($words);
+		for ($i=0; $i< count($d); $i++) { 
+			 $find = substr_count($d[$i],$word);
+			 if ($find > 0) {
+			 	$jumlah++;
+			 }
+			 
+		}
+		return $jumlah;
+	}
 ?>
