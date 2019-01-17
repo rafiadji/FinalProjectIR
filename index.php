@@ -4,8 +4,13 @@
 		"Roses are red violet is blue so that my love is only for you"
 	];
 
-	echo "TF(red, D1) : ".tf("red",$d[0])."<br>";
-	echo "TF(blue, D2) : ".tf("blue",$d[1])."<br>";
+	echo "TF(red, D1) : ".tf("face",$d[0])."<br>";
+	echo "TF(red, D2) : ".tf("face",$d[1])."<br>";
+	echo "DF(face, D) : ".df("face",$d)."<br>"; 
+	echo "IDF(red, D) : ".idf("face",$d)."<br>"; 
+	echo "TF.IDF(love, D) : ".tf_idf("face",$d[0],$d)."<br>";
+	echo "TF.IDF(love, D) : ".tf_idf("face",$d[1],$d)."<br>";
+	echo tf_idf($d);
 
 	function countword($d) {
 		return str_word_count($d);
@@ -35,16 +40,36 @@
 		return $count / countword($d);
 	}
 
-	function df($words,$d){
+	function df($word,$D){
 		$jumlah = 0;
-		$word = stopword($words);
-		for ($i=0; $i< count($d); $i++) { 
-			 $find = substr_count($d[$i],$word);
+		// $word = stopword($words);
+		for ($i=0; $i< count($D); $i++) { 
+			 $find = substr_count($D[$i],$word);
 			 if ($find > 0) {
 			 	$jumlah++;
 			 }
 			 
 		}
 		return $jumlah;
+	}
+
+	function idf($word,$D){
+		$count = count($D);
+		$df = df($word,$D);
+		$idf = log($count/$df);
+		return $idf;
+	}
+
+	function idfPlus1($word,$D){
+		$count = count($D);
+		$df = df($word,$D);
+		$idf = log($count/$df)+1;
+		return $idf;
+	}
+
+	function tf_idf($word,$d,$D){
+		$tf = tf($word,$d);
+		$idf = idf($word,$D);
+		return $tf * $idf;
 	}
 ?>
