@@ -22,7 +22,9 @@ def getData():
     judulLinks = browser.find_elements_by_css_selector('.mr140>h3>a')
     for judulLink in judulLinks :
         judul = judulLink.text
-        print(judul)
+        sql = "INSERT INTO document (document) VALUES (%s)"
+        cursor.execute(sql, (judul))
+        conn.commit()
 
 pages_remaining = True
 getData()
@@ -35,5 +37,4 @@ while pages_remaining:
         pages_remaining = False
         browser.quit()
 # End Selenium
-conn.commit()
 conn.close()
